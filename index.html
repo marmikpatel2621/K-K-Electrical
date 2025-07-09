@@ -5,26 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KK Electrical Services</title>
   <style>
+    :root {
+      --primary-color: #1e1e1e;
+      --accent-color: #ffb100;
+      --text-light: #f9f9f9;
+      --background: #ffffff;
+      --section-background: #f5f5f5;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f8f9fa;
-      color: #333;
+      background: var(--background);
+      color: var(--primary-color);
     }
+
     header {
       position: relative;
-      color: white;
       text-align: center;
-      background: #000;
+      color: var(--text-light);
     }
+
     header img {
       width: 100%;
-      max-height: 400px;
+      height: 500px;
       object-fit: cover;
-      opacity: 0.7;
+      opacity: 0.85;
     }
+
     header .overlay {
       position: absolute;
       top: 0;
@@ -35,77 +44,100 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      color: white;
-      text-shadow: 1px 1px 3px #000;
+      padding: 1em;
+      text-align: center;
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
     }
+
     header .logo {
       font-size: 3rem;
-      font-weight: bold;
-      #background-color: rgba(0, 64, 128, 0.85);
-      padding: 0.3em 1em;
-      border-radius: 8px;
+      font-weight: 800;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 0.5em 1em;
+      border-radius: 10px;
       letter-spacing: 2px;
-      margin-bottom: 0.5em;
+      color: #fff;
     }
+
     header .tagline {
       font-size: 1.5rem;
-      #background-color: rgba(0, 0, 0, 0.6);
-      padding: 0.4em 1em;
-      border-radius: 6px;
+      color: var(--accent-color);
+      margin-top: 1em;
+      font-weight: 600;
+    }
+
+    header p, header a {
+      color: #eee;
+      margin: 0.4em;
+      font-size: 1rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #1e1e1e;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #f9f9f9;
+      padding: 1em;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--accent-color);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 2em;
+      background: var(--background);
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--accent-color);
       margin-bottom: 0.5em;
     }
 
-    header h1 {
-      font-size: 2.5rem;
-      margin: 0.5em 0 0;
-    }
-    header p {
-      margin: 0.2em;
-    }
-    main {
-      padding: 20px;
-      max-width: 960px;
-      margin: auto;
-    }
-    h2 {
-      color: #004080;
-    }
-    ul {
-      list-style: disc;
-      padding-left: 20px;
-    }
     .section {
-      margin-bottom: 2em;
+      margin-bottom: 2.5em;
       display: none;
+      background: var(--section-background);
+      padding: 1.5em;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
     }
+
     .active {
       display: block !important;
     }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    ul li {
+      margin-bottom: 0.75em;
+    }
+
     .contact {
-      background: #e6f2ff;
-      padding: 1em;
-      border-left: 4px solid #004080;
+      background: #fff7e6;
+      border-left: 6px solid var(--accent-color);
     }
-    nav {
-      background: #002b5c;
-      padding: 1em;
-      text-align: center;
-    }
-    nav a {
-      margin: 0 15px;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
+
     footer {
-      background-color: #004080;
-      color: white;
-      padding: 1em;
+      background: #1e1e1e;
+      color: #ccc;
       text-align: center;
+      padding: 1.5em 1em;
+      font-size: 0.95rem;
     }
   </style>
   <script>
@@ -140,7 +172,6 @@
       <div class="tagline">Powering the Future with Innovation and Reliability</div>
     </div>
   </header>
-
   <nav>
     <a href="#vision">Vision & Goals</a>
     <a href="#services">Services</a>
@@ -148,7 +179,6 @@
     <a href="#sisters">Sister Companies</a>
     <a href="#contact">Contact Us</a>
   </nav>
-
   <main>
     <section id="vision" class="section">
       <h2>Vision & Goals</h2>
@@ -196,16 +226,15 @@
       </ul>
     </section>
 
-    <section id="contact" class="section contact">
+    <section id="contact" class="section">
       <h2>Contact Us</h2>
-      <p><strong>KK Patel (Former G.E.B. Engineer)</strong></p>
-      <p>Address: K K Corporate House,G-9,10,11,Satyamev Complex,Opp:High court,S G Highway, Ahmedabad, Gujarat</p>    	
-      <p>Email: <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kamlesh1667@gmail.com" target="_blank">kamlesh1667@gmail.com</a></p>
-      <p>Phone: +91-9173637345 / +91-9173248896</p>
+      <p><strong>Kamleshbhai K Patel (Former G.E.B. Engineer)</strong></p>
+      <p><strong>Address:</strong> K K Corporate House, G-9,10,11, Satyamev Complex, Opp: High court, S G Highway, Ahmedabad, Gujarat</p>
+      <p><strong>Email:</strong> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kamlesh1667@gmail.com" target="_blank">kamlesh1667@gmail.com</a></p>
+      <p><strong>Phone:</strong> +91-9173637345 / +91-9173248896</p>
       <p>Feel free to contact us for consultations, project quotations, or product inquiries. We ensure a prompt and professional response to all your electrical needs.</p>
-    </section>	
+    </section>
   </main>
-
   <footer>
     <p>&copy; 2025 KK Electrical Services. All Rights Reserved.</p>
   </footer>
