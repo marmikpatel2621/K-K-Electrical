@@ -90,7 +90,7 @@
       margin-top: 1em;
       font-size: 2.5rem;
       color: var(--accent-color);
-      font-weight: 600;
+      font-weight: 800;
       animation: pulse 4s ease-in-out infinite;
     }
 
@@ -177,7 +177,8 @@
         if (tgt) tgt.classList.add('active');
       };
 
-      document.querySelectorAll('.top-nav a, nav.main-nav a').forEach(link => {
+      // include footer links in the click handler
+      document.querySelectorAll('.top-nav a, nav.main-nav a, footer .footer-links a').forEach(link => {
         link.addEventListener('click', e => {
           const id = link.getAttribute('href').substring(1);
           showSection(id);
@@ -192,7 +193,7 @@
   </script>
 </head>
 <body>
-  <!-- Top bar with the updated logo size and centered nav -->
+  <!-- Top bar with centered nav -->
   <div class="top-nav">
     <a href="#vision">
       <img src="logo_new.png" alt="KK Electrical Services Logo" class="logo-small">
@@ -225,7 +226,6 @@
   </nav>
 
   <main>
-    <!-- Sections unchanged -->
     <section id="vision" class="section">
       <h2>Vision &amp; Goals</h2>
       <p>KK Electrical Services aims to lead the electrical industry through unmatched service quality, timely project execution, and unwavering integrity. Our long-term vision is to set new benchmarks in electrical contracting, panel manufacturing, and sustainable energy practices.</p>
