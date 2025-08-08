@@ -4,239 +4,87 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>KK Electrical Services</title>
-  <style>
-    :root {
-      --primary-color: #1e1e1e;
-      --accent-color: #ffb100;
-      --text-light: #f9f9f9;
-      --background: #ffffff;
-      --section-background: #f5f5f5;
-      --nav-background: rgba(30, 30, 30, 0.9);
-      --footer-background: #1e1e1e;
-    }
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: var(--background);
-      color: var(--primary-color);
-    }
-
-    /* Top nav */
-    .top-nav {
-      display: flex;
-      align-items: center;
-      background: var(--nav-background);
-      padding: 0.5em 1em;
-    }
-    .top-nav .logo-small {
-      height: 80px;
-      margin-right: auto;
-    }
-    .top-nav ul {
-      display: flex;
-      list-style: none;
-      margin: 0 auto;
-      padding: 0;
-    }
-    .top-nav li { margin: 0 1em; }
-    .top-nav a {
-      color: var(--text-light);
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s;
-    }
-    .top-nav a:hover { color: var(--accent-color); }
-
-    /* Hero */
-    header.hero {
-      position: relative;
-      text-align: center;
-      color: var(--text-light);
-    }
-    header.hero img {
-      width: 100%;
-      height: 500px;
-      object-fit: cover;
-      opacity: 0.85;
-    }
-    header.hero .overlay {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7));
-    }
-    header.hero .overlay .logo {
-      font-size: 3rem;
-      font-weight: 800;
-      padding: 0.5em 1em;
-      background: rgba(255,255,255,0.1);
-      border-radius: 10px;
-      letter-spacing: 2px;
-    }
-    header.hero .overlay .tagline {
-      margin-top: 1em;
-      font-size: 2.5rem;
-      color: var(--accent-color);
-      font-weight: 600;
-      animation: pulse 4s ease-in-out infinite;
-    }
-    
-    header.hero .overlay .tagline-small {
-      margin-top: 1em;
-      font-size: 1.5rem;
-      color: #ffffff;
-      font-weight: 600;
-      animation: pulse 4s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%,100% { transform: scale(1); opacity: 0.9; }
-      50%     { transform: scale(1.05); opacity: 1; }
-    }
-
-    /* Common section styling */
-    main {
-      max-width: 1100px;
-      margin: auto;
-      padding: 2em 1em;
-    }
-    .section {
-      display: none;
-      background: var(--section-background);
-      padding: 2em;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-      margin-bottom: 2em;
-    }
-    .section.active { display: block; }
-    .section h2 {
-      font-size: 2rem;
-      border-bottom: 2px solid var(--accent-color);
-      padding-bottom: 0.25em;
-      margin-bottom: 1em;
-    }
-
-    /* Home section inner styles */
-    #home .intro-title {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1em;
-    }
-    #home .intro-title::before {
-      content: '';
-      width: 5px;
-      height: 1.5em;
-      background: var(--accent-color);
-      margin-right: 0.75em;
-    }
-    #home .intro-title h2 {
-      margin: 0;
-      font-size: 2rem;
-      text-transform: uppercase;
-    }
-    #home ul {
-      padding-left: 1.5em;
-      color: #666;
-    }
-    #home ul li {
-      margin-bottom: 0.75em;
-      line-height: 1.4;
-    }
-
-    #home .epc {
-      background: url('1.jpg') center/cover no-repeat;
-      color: #fff;
-      position: relative;
-      padding: 3em 1.5em;
-      margin-top: 2em;
-      border-radius: 10px;
-    }
-    #home .epc::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(30,30,30,0.7);
-      border-radius: 10px;
-    }
-    #home .epc .content {
-      position: relative;
-      max-width: 800px;
-      margin: auto;
-    }
-    #home .epc .subtitle {
-      text-transform: uppercase;
-      opacity: 0.8;
-      margin-bottom: 0.25em;
-    }
-    #home .epc .main-title {
-      font-size: 2.5rem;
-      margin: 0.25em 0 1em;
-      font-weight: 700;
-    }
-    #home .epc p {
-      line-height: 1.6;
-    }
-
-    /* Footer */
-    footer {
-      background: var(--footer-background);
-      color: #ccc;
-      text-align: center;
-      padding: 2em 1em;
-    }
-    footer .footer-links {
-      margin-bottom: 1em;
-    }
-    footer .footer-links a {
-      color: #ccc;
-      margin: 0 0.5em;
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s;
-    }
-    footer .footer-links a:hover { color: var(--accent-color); }
-  </style>
+  <link rel="stylesheet" href="style.css">
   <script>
     window.addEventListener('DOMContentLoaded', () => {
       const sections = document.querySelectorAll('.section');
       function show(id) {
         sections.forEach(s => s.classList.toggle('active', s.id === id));
       }
-      // wire up all links
-      document.querySelectorAll('.top-nav a, footer .footer-links a').forEach(a => {
-        a.addEventListener('click', e => {
-          e.preventDefault();
-          const id = a.getAttribute('href').slice(1);
-          show(id);
-          history.pushState(null, '', '#'+id);
+      document.querySelectorAll('.top-nav a, footer .footer-links a, .btn-quote')
+        .forEach(a => {
+          a.addEventListener('click', e => {
+            e.preventDefault();
+            const id = a.getAttribute('href').slice(1);
+            show(id);
+            history.pushState(null, '', '#'+id);
+          });
         });
-      });
-      // initial
       show(location.hash.slice(1) || 'home');
     });
   </script>
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+  // 1) Show correct section on page load / nav click
+  const sections = document.querySelectorAll('.section');
+  function show(id) {
+    sections.forEach(s => s.classList.toggle('active', s.id === id));
+  }
+  document.querySelectorAll('.top-nav a, footer .footer-links a')
+    .forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const id = a.getAttribute('href').slice(1);
+        show(id);
+        history.replaceState(null, '', `#${id}`);
+      });
+    });
+  show(location.hash.slice(1) || 'home');
+
+  // 2) Scroll‐reveal / hide for Home subsections
+  const subs = document.querySelectorAll('#home.home-section .subsection');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        } else {
+          entry.target.classList.remove('visible');
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.2  // tweak this to fire earlier/later
+    });
+    subs.forEach(el => io.observe(el));
+  } else {
+    // fallback: always visible
+    subs.forEach(el => el.classList.add('visible'));
+  }
+});
+</script>
+
+</script>
+
 </head>
 <body>
-  <!-- top nav -->
+  <!-- Top nav -->
   <div class="top-nav">
-    <a href="#home">
-      <img src="logo_new.png" alt="KK Electrical Logo" class="logo-small">
-    </a>
+    <a href="#home"><img src="logo_new.png" class="logo-small" alt="Logo"></a>
     <ul>
       <li><a href="#home">Home</a></li>
       <li><a href="#vision">Vision &amp; Goals</a></li>
       <li><a href="#services">Services</a></li>
-      <li><a href="#manufacturing">Manufacturing &amp; Supply</a></li>
-      <li><a href="#sisters">Sister Companies</a></li>
-      <li><a href="#contact">Contact Us</a></li>
+      <li><a href="#manufacturing">Manufacturing</a></li>
+      <li><a href="#sisters">Sister Cos.</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
 
-  <!-- hero -->
+  <!-- Hero -->
   <header class="hero">
-    <img src="header2.jpg" alt="Electrical Services Header">
+    <img src="header2.jpg" alt="Header Image">
     <div class="overlay">
       <div class="tagline">Powering Your World with Trusted Electrical Solutions</div>
       <div class="tagline-small">With Reliability, Efficiency and Customer Satisfaction</div>
@@ -244,24 +92,89 @@
   </header>
 
   <main>
-    <!-- HOME -->
-    <section id="home" class="section">
-      <div class="intro-title"><h2>We Offer Solutions For</h2></div>
-      <ul>
-        <li>Switchyard (Electrical substation) Design &amp; Execution</li>
-        <li><a href="https://aktransformers.com/" target="_blank" style="color:var(--primary-color)">Transfomer Manufacturing &amp; Installation</a></li>
-        <li>HT &amp; LT VCB, Cables, Earthings</li>
-        <li>Electrical HT &amp; LT Installations</li>
-        <li>Engineers &amp; Consultancy</li>
-        <li>Operation &amp; Maintenance Services</li>
-        <li>Electrical Panel Supply &amp; Installation</li>
-        <li>Renewable Energy Resources</li>
-      </ul>
-      <div class="epc">
+    <!-- HOME unified section -->
+    <section id="home" class="section home-section">
+      <div class="subsection cta-bar">
+        Number one in industrial services. Get your free consulting and quote now
+        <a href="#contact" class="btn-quote">Get a Quote</a>
+      </div>
+
+      <div class="subsection solutions">
+        <div class="intro-title"><h2>We Offer Solutions For</h2></div>
+        <ul>
+          <li>Switchyard (Electrical substation) Design &amp; Execution</li>
+          <li>Electrical HT &amp; LT Installations</li>
+          <li>Engineers &amp; Consultancy</li>
+          <li>Operation &amp; Maintenance Services</li>
+          <li>Electrical Panel Supply &amp; Installation</li>
+          <li>Renewable Energy Resources</li>
+        </ul>
+      </div>
+
+      <div class="subsection epc-highlight">
         <div class="content">
           <div class="subtitle">Who We Are</div>
           <div class="main-title">Electrical EPC Contractor</div>
-          <p>Day by day, the demand for energy is increasing worldwide. In this modern era of power, KK Electrical Services has carved a niche in turnkey projects—synonymous with quality, project management, prompt execution, and diligent services. With a range of products and solutions, we serve both government and private sectors through sound engineering and rich experience.</p>
+          <p>Day by day, the demand for energy is increasing worldwide. In this modern era of power, KK Electrical Services has carved a niche in turnkey projects—synonymous with quality, project management, prompt execution, and diligent services. With a gamut of products and solutions, we serve both government and private sectors through sound engineering and rich experience.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="intro-title"><h2>Our Services</h2></div>
+        <div class="services-grid">
+          <div class="service-card"><img src="images/service1.jpg" alt=""><h4>Substation &amp; Power Projects</h4></div>
+          <div class="service-card"><img src="images/service2.jpg" alt=""><h4>Electrical Panels</h4></div>
+          <div class="service-card"><img src="images/service3.jpg" alt=""><h4>Electrification</h4></div>
+          <div class="service-card"><img src="images/service4.jpg" alt=""><h4>Engineers &amp; Consultant</h4></div>
+          <div class="service-card"><img src="images/service5.jpg" alt=""><h4>Renewable Energy Resource</h4></div>
+          <div class="service-card"><img src="images/service6.jpg" alt=""><h4>O &amp; M Services</h4></div>
+        </div>
+      </div>
+
+      <div class="subsection quality-assurance">
+        <div class="qa-text">
+          <h2>Quality Assurance</h2>
+          <p>Our quality assurance system is a series of inter-related controls designed to achieve the desired objectives:</p>
+          <ul>
+            <li><strong>Process Control:</strong> Drawing &amp; Specification, Construction Methodology, QA Plan, Resource-based planning.</li>
+            <li><strong>Procurement Control:</strong> Vendor evaluation, PO Specification, Qualification of procured items.</li>
+            <li><strong>Materials Control:</strong> Receipt, QAV/QC, Storage, Non-conformity segregation, Issue of materials.</li>
+            <li><strong>Inspection &amp; Test Control:</strong> QA Plan, Calibration of equipment, Inspection records.</li>
+            <li><strong>Design Control:</strong> System design criteria, Specification prep, Document delivery.</li>
+            <li><strong>Record Control:</strong> Document identification, Storage, Retrieval, Permanent &amp; temporary records.</li>
+          </ul>
+        </div>
+        <div class="qa-image"><img src="images/qa.jpg" alt="QA"></div>
+      </div>
+
+      <div class="subsection commit-serve">
+        <div class="commitment">
+          <h2>Our Commitment</h2>
+          <ol>
+            <li>Act as problem-solvers and innovators that assist senior decision-makers to realize their corporate objectives.</li>
+            <li>Deliver outstanding value, exceed expectations, and build long-term business relationships.</li>
+            <li>Bring the managerial and technical experience needed to collaborate from problem definition to implementation.</li>
+          </ol>
+        </div>
+        <div class="whom-serve">
+          <h2>Whom We Serve</h2>
+          <ul>
+            <li>Private/public works, institutional &amp; commercial facilities (banks, offices, hospitals, airports)</li>
+            <li>Electrical consultants &amp; project management firms</li>
+            <li>Architects &amp; developers, infrastructure companies, oil &amp; gas industries</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="intro-title"><h2>Our Clients</h2></div>
+        <div class="clients-logos">
+          <div><img src="images/client1.jpg" alt=""></div>
+          <div><img src="images/client2.jpg" alt=""></div>
+          <div><img src="images/client3.jpg" alt=""></div>
+          <div><img src="images/client4.png" alt=""></div>
+          <div><img src="images/client5.png" alt=""></div>
+          <div><img src="images/client6.jpg" alt=""></div>
         </div>
       </div>
     </section>
@@ -269,37 +182,17 @@
     <!-- VISION -->
     <section id="vision" class="section">
       <h2>Vision &amp; Goals</h2>
-      <p>
-        At KK Electrical Services, our vision is to become the premier partner for safe,
-        sustainable and cutting-edge electrical solutions—building a more efficient world
-        by delivering excellence, transparency and integrity in every project. We aim to
-        set the standard for quality across contracting, panel manufacturing, energy auditing
-        and system design by continuously innovating energy-saving concepts and forging
-        long-term, value-driven relationships with our clients, employees and partners.
-      </p>
-
+      <p>At KK Electrical Services, our vision is to become the premier partner for safe, sustainable and cutting-edge electrical solutions—building a more efficient world by delivering excellence, transparency and integrity in every project. We aim to set the standard for quality across contracting, panel manufacturing, energy auditing and system design by continuously innovating energy-saving concepts and forging long-term, value-driven relationships with our clients, employees and partners.</p>
       <h3>Goals</h3>
       <ul>
-        <li><strong>Exceed Client Expectations:</strong> Deliver on-time, on-budget electrical services—ranging from LT/HT wiring
-          and switchyard erection to industrial, commercial and residential electrification—
-          with uncompromising quality and safety.</li>
-        <li><strong>Foster Trust &amp; Transparency:</strong> Operate with open communication and full accountability in consultations,
-          permitting and approvals (UGVCL, PGVCL, DGVCL and other government bodies).</li>
-        <li><strong>Innovate for Efficiency:</strong> Leverage licensed energy audits and cutting-edge technologies to optimize
-          energy consumption, implement and monitor bespoke savings schemes, and drive measurable cost reductions.</li>
-        <li><strong>Manufacture with Precision:</strong> Design and build custom LT panels—PCC, MCC, APFC, synchronizing and
-          automation panels—tailored to each customer’s unique specifications.</li>
-        <li><strong>Expand Value-Added Services:</strong> Supply and support a comprehensive range of capital goods (transformers,
-          voltage stabilizers, servo-controls, cable trays, earthing systems) through our sister concerns, ensuring
-          end-to-end excellence across every segment.</li>
-        <li><strong>Cultivate Lasting Partnerships:</strong> Grow alongside our clients and communities by maintaining ethical
-          practices, investing in our team’s expertise, and continuously seeking opportunities to add sustainable value.</li>
+        <li><strong>Exceed Client Expectations:</strong> Deliver on-time, on-budget electrical services—with uncompromising quality and safety.</li>
+        <li><strong>Foster Trust &amp; Transparency:</strong> Open communication and full accountability in consultations, permitting and approvals.</li>
+        <li><strong>Innovate for Efficiency:</strong> Licensed energy audits and cutting-edge tech to optimize consumption and costs.</li>
+        <li><strong>Manufacture with Precision:</strong> Custom LT panels—PCC, MCC, APFC, synchronizing and automation panels.</li>
+        <li><strong>Expand Value-Added Services:</strong> Supply capital goods through our sister concerns for end-to-end excellence.</li>
+        <li><strong>Cultivate Lasting Partnerships:</strong> Ethical practices, team investment, and sustainable value creation.</li>
       </ul>
-
-      <p>
-        Together, these guiding principles drive us to not only meet but to surpass the highest
-        standards of performance, safety and customer satisfaction on every project we undertake.
-      </p>
+      <p>Together, these principles drive us to surpass the highest standards of performance, safety and customer satisfaction on every project.</p>
     </section>
 
     <!-- SERVICES -->
@@ -314,7 +207,7 @@
         <li>Complete Housing &amp; Commercial Electrification</li>
         <li>Street Lighting and High Mast Area Lighting</li>
         <li>Electrical Consultation with UGVCL, PGVCL, DGVCL, etc.</li>
-        <li><strong>Energy Auditing:</strong> Complete Electrical Audits, Energy Saving Implementation &amp; Monitoring, Electrical Design &amp; Consultancy (Licensed Auditor: G-64, Gandhinagar)</li>
+        <li><strong>Energy Auditing:</strong> Complete Electrical Audits, Energy Saving Implementation &amp; Monitoring.</li>
       </ul>
     </section>
 
@@ -337,7 +230,7 @@
     <section id="sisters" class="section">
       <h2>Sister Companies</h2>
       <ul>
-        <li><strong><a href="https://aktransformers.com/" target="_blank" style="color:var(--primary-color)">A K Transformers</a>:</strong> Manufacturer of Power &amp; Distribution Transformers</li>
+        <li><strong><a href="https://aktransformers.com/" target="_blank">A K Transformers</a>:</strong> Manufacturer of Power &amp; Distribution Transformers</li>
         <li><strong>Hasti Switchgear:</strong> MCBs, Distribution Boards; channel partner for Schneider, Havells, etc.</li>
         <li><strong>Jay Enterprise:</strong> Fabrication of Cable Trays, Junction Boxes &amp; Bus Bar Trunking</li>
         <li><strong>Jay Copper &amp; Alloys:</strong> Supplier of Copper Tubes &amp; Alloys for HVAC, Plumbing, Solar &amp; Electrical</li>
