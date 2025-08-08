@@ -241,13 +241,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
     <!-- CONTACT -->
     <section id="contact" class="section">
-      <h2>Contact Us</h2>
-      <p><strong>Kamleshbhai K Patel (Former G.E.B. Engineer)</strong></p>
-      <p><strong>Address:</strong> K K Corporate House, G-9,10,11, Satyamev Complex, Opp: High Court, S G Highway, Ahmedabad, Gujarat</p>
-      <p><strong>Email:</strong> <a href="mailto:kamlesh1667@gmail.com">kamlesh1667@gmail.com</a></p>
-      <p><strong>Phone:</strong> +91-9173637345 / +91-9173248896</p>
-      <p>Feel free to contact us for consultations, project quotations, or product inquiries. We ensure a prompt and professional response to all your electrical needs.</p>
-    </section>
+  <h2>Contact Us</h2>
+
+  <div class="contact-container">
+    <!-- Left: contact info -->
+    <div class="contact-info">
+      <ul>
+        <li>
+          <span class="icon">📍</span>
+          <div>
+            <strong>Address</strong>
+            21,FF, Bala Tripura industrial estate, Rd, Santej, Khatraj, Gujarat 382165, India
+          </div>
+        </li>
+        <li>
+          <span class="icon">📞</span>
+          <div>
+            <strong>Phone</strong>
+            +91-9173637345 / +91-9173248896
+          </div>
+        </li>
+        <li>
+          <span class="icon">✉️</span>
+          <div>
+            <strong>Email</strong>
+            <a href="mailto:kamlesh1667@gmail.com">kamlesh1667@gmail.com</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Right: contact form -->
+    <div class="contact-form">
+      <form>
+        <input type="text" name="name"    placeholder="Your Name *"    required>
+        <input type="email" name="email"  placeholder="Your Email *"   required>
+        <input type="text" name="subject" placeholder="Subject *"      required>
+        <textarea name="message"          placeholder="Your Message *" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Map embed -->
+  <div class="map-container">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3669.308930567778!2d72.4589852!3d23.1223806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9d049c963369%3A0x87a1f0abdc4a90a!2sK%20K%20Electrical%20Services!5e0!3m2!1sen!2sus!4v1754626924277!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</section>
+
   </main>
 
   <footer>
