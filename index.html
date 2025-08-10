@@ -62,6 +62,37 @@ document.addEventListener('DOMContentLoaded', () => {
     // fallback: always visible
     subs.forEach(el => el.classList.add('visible'));
   }
+
+
+const serviceReveals = document.querySelectorAll('#services .reveal');
+if ('IntersectionObserver' in window) {
+  const io2 = new IntersectionObserver((entries)=>{
+    entries.forEach(en => en.target.classList.toggle('visible', en.isIntersecting));
+  }, { threshold: 0.15 });
+  serviceReveals.forEach(el => io2.observe(el));
+} else {
+  serviceReveals.forEach(el => el.classList.add('visible'));
+}
+
+const mfgCards = document.querySelectorAll('#manufacturing .mfg-reveal');
+if ('IntersectionObserver' in window) {
+  document.documentElement.classList.add('has-io');
+  const mfgObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      entry.target.classList.toggle('visible', entry.isIntersecting);
+    });
+  }, { threshold: 0.2 });
+  mfgCards.forEach(card => mfgObserver.observe(card));
+}
+
+const sisterTiles = document.querySelectorAll('#sisters .sister-reveal');
+if ('IntersectionObserver' in window) {
+  document.documentElement.classList.add('has-io');
+  const ioSisters = new IntersectionObserver((entries) => {
+    entries.forEach(en => en.target.classList.toggle('visible', en.isIntersecting));
+  }, { threshold: 0.15 });
+  sisterTiles.forEach(t => ioSisters.observe(t));
+}
 });
 </script>
 
@@ -122,14 +153,16 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
 
       <div class="subsection">
-        <div class="intro-title"><h2>Our Services</h2></div>
+        <div class="intro-title"><h2>Manufacturing, Services & Supplies</h2></div>
         <div class="services-grid">
           <div class="service-card"><img src="images/service1.jpg" alt=""><h4>Substation &amp; Power Projects</h4></div>
-          <div class="service-card"><img src="images/service2.jpg" alt=""><h4>Electrical Panels</h4></div>
-          <div class="service-card"><img src="images/service3.jpg" alt=""><h4>Electrification</h4></div>
-          <div class="service-card"><img src="images/service4.jpg" alt=""><h4>Engineers &amp; Consultant</h4></div>
-          <div class="service-card"><img src="images/service5.jpg" alt=""><h4>Renewable Energy Resource</h4></div>
-          <div class="service-card"><img src="images/service6.jpg" alt=""><h4>O &amp; M Services</h4></div>
+          <div class="service-card"><img src="images/service2.jpg" alt=""><h4>APFC Electrical Panels</h4></div>
+          <div class="service-card"><img src="images/service3.jpg" alt=""><h4>Subsidy and Energy Auditing</h4></div>
+          <div class="service-card"><img src="images/service4.jpg" alt=""><h4>Transformers Manufacturing</h4></div>
+          <div class="service-card"><img src="images/service5.jpg" alt=""><h4>Electrical and Consulting Services</h4></div>
+          <div class="service-card"><img src="images/service6.jpg" alt=""><h4>Power Distribution Panel</h4></div>
+          <div class="service-card"><img src="images/service7.jpg" alt=""><h4>Electrical Installations</h4></div>
+          <div class="service-card"><img src="images/service8.jpg" alt=""><h4>VCBs</h4></div>
         </div>
       </div>
 
@@ -143,7 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <li><strong>Materials Control:</strong> Receipt, QAV/QC, Storage, Non-conformity segregation, Issue of materials.</li>
             <li><strong>Inspection &amp; Test Control:</strong> QA Plan, Calibration of equipment, Inspection records.</li>
             <li><strong>Design Control:</strong> System design criteria, Specification prep, Document delivery.</li>
-            <li><strong>Record Control:</strong> Document identification, Storage, Retrieval, Permanent &amp; temporary records.</li>
           </ul>
         </div>
         <div class="qa-image"><img src="images/qa.jpg" alt="QA"></div>
@@ -161,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="whom-serve">
           <h2>Whom We Serve</h2>
           <ul>
-            <li>Private/public works, institutional &amp; commercial facilities (banks, offices, hospitals, airports)</li>
+            <li>Private/public works, Institutional, commercial facilities &amp; Industrial sectors</li>
             <li>Electrical consultants &amp; project management firms</li>
             <li>Architects &amp; developers, infrastructure companies, oil &amp; gas industries</li>
           </ul>
@@ -197,9 +229,9 @@ document.addEventListener('DOMContentLoaded', () => {
       <p>Together, these principles drive us to surpass the highest standards of performance, safety and customer satisfaction on every project.</p>
     </section>
 
-    <!-- SERVICES -->
+    <!-- SERVICES 
     <section id="services" class="section">
-      <h2>Services</h2>
+     <h2>Services</h2>
       <ul>
         <li>HT and LT Overhead Line Erection</li>
         <li>Underground Cable Works and Department Approvals</li>
@@ -211,9 +243,254 @@ document.addEventListener('DOMContentLoaded', () => {
         <li>Electrical Consultation with UGVCL, PGVCL, DGVCL, etc.</li>
         <li><strong>Energy Auditing:</strong> Complete Electrical Audits, Energy Saving Implementation &amp; Monitoring.</li>
       </ul>
-    </section>
 
-    <!-- MANUFACTURING -->
+    </section>-->
+
+  <section id="services" class="section services-section">
+  <!-- In-section header -->
+  <div class="services-hero">
+    <h2 class="services-title">Services</h2>
+    <p class="services-sub">End-to-end electrical EPC, panels, approvals &amp; energy solutions</p>
+  </div>
+
+  <div class="services-wrap">
+    <div class="services-grid">
+
+  <!-- Feature card (unchanged) -->
+  <article class="srv-card srv-card--image reveal" tabindex="0">
+    <div class="srv-body">
+      <img src="images/service1.jpg" alt="Substations & Power Proojects" />
+      <div class="srv-bar"><h4>Substation &amp; Power Projects</h4></div>
+    </div>
+    <div class="srv-overlay">
+      <div class="srv-overlay-head">
+        <span class="srv-pill" aria-hidden="true">⚙</span>
+        <h4>Substation &amp; Power Projects</h4>
+      </div>
+      <p>Detailed system studies, optimal layout selection, and turnkey execution of
+      substations &amp; power infrastructure with strong project management and QA.</p>
+      <a class="srv-link" href="#contact">Read more</a>
+    </div>
+  </article>
+
+  <!-- Image tiles (FULL OVERLAY on hover/focus) -->
+  <article class="srv-card srv-card--image reveal" tabindex="0">
+    <div class="srv-body">
+      <img src="images/service2.jpg" alt="MCC/PCC/APFC/HT panels" />
+      <div class="srv-bar"><h4>Electrical Panels (PCC / MCC / APFC / HT)</h4></div>
+    </div>
+    <div class="srv-overlay">
+      <div class="srv-overlay-head">
+        <span class="srv-pill" aria-hidden="true">⚙</span>
+        <h4>Electrical Panels</h4>
+      </div>
+      <p>Design, build &amp; FAT for PCC, MCC, APFC, synchronizing &amp; automation panels to your spec.</p>
+      <a class="srv-link" href="#contact">Read more</a>
+    </div>
+  </article>
+
+  <article class="srv-card srv-card--image reveal" tabindex="0">
+    <div class="srv-body">
+      <img src="images/service3.jpg" alt="Electrification" />
+      <div class="srv-bar"><h4>Electrification (Industrial • Commercial • Residential)</h4></div>
+    </div>
+    <div class="srv-overlay">
+      <div class="srv-overlay-head">
+        <span class="srv-pill" aria-hidden="true">🔌</span>
+        <h4>Electrification</h4>
+      </div>
+      <p>Complete wiring, protection, testing &amp; commissioning with safety-first practices.</p>
+      <a class="srv-link" href="#contact">Read more</a>
+    </div>
+  </article>
+
+  <article class="srv-card srv-card--image reveal" tabindex="0">
+    <div class="srv-body">
+      <img src="images/service4.jpg" alt="VCBs and heavy-duty cabling" />
+      <div class="srv-bar"><h4>HT/LT VCBs &amp; Heavy-Duty Cable Laying</h4></div>
+    </div>
+    <div class="srv-overlay">
+      <div class="srv-overlay-head">
+        <span class="srv-pill" aria-hidden="true">⚡</span>
+        <h4>HT/LT Systems</h4>
+      </div>
+      <p>Breakers, trays &amp; underground cabling including terminations and approvals.</p>
+      <a class="srv-link" href="#contact">Read more</a>
+    </div>
+  </article>
+
+  <article class="srv-card srv-card--image reveal" tabindex="0">
+    <div class="srv-body">
+      <img src="images/service6.jpg" alt="Engineers and consultancy" />
+      <div class="srv-bar"><h4>Engineers &amp; Consultancy</h4></div>
+    </div>
+    <div class="srv-overlay">
+      <div class="srv-overlay-head"><span class="srv-pill" aria-hidden="true">📐</span><h4>Consultancy</h4></div>
+      <p>Planning, design review, BOQ, tendering and site supervision for reliable outcomes.</p>
+      <a class="srv-link" href="#contact">Read more</a>
+    </div>
+  </article>
+
+  <article class="srv-card srv-card--image reveal" tabindex="0">
+    <div class="srv-body">
+      <img src="images/service5.jpg" alt="Energy audit and subsidy" />
+      <div class="srv-bar"><h4>Energy Auditing &amp; Industrial Subsidy</h4></div>
+    </div>
+    <div class="srv-overlay">
+      <div class="srv-overlay-head"><span class="srv-pill" aria-hidden="true">📊</span><h4>Energy Audit</h4></div>
+      <p>Licensed audits (G-64), savings implementation &amp; subsidy guidance with monitoring.</p>
+      <a class="srv-link" href="#contact">Read more</a>
+    </div>
+  </article>
+
+  <article class="srv-card srv-card--image reveal" tabindex="0">
+    <div class="srv-body">
+      <img src="images/service7.jpg" alt="Underground cable work" />
+      <div class="srv-bar"><h4>Underground Cable Works</h4></div>
+    </div>
+    <div class="srv-overlay">
+      <div class="srv-overlay-head"><span class="srv-pill" aria-hidden="true">🧱</span><h4>UG Cabling</h4></div>
+      <p>Residential, commercial &amp; industrial schemes with trenching, laying and testing.</p>
+      <a class="srv-link" href="#contact">Read more</a>
+    </div>
+  </article>
+
+  <article class="srv-card srv-card--image reveal" tabindex="0">
+    <div class="srv-body">
+      <img src="images/service1.jpg" alt="Switchyard and substation execution" />
+      <div class="srv-bar"><h4>Switchyard / Substation Execution</h4></div>
+    </div>
+    <div class="srv-overlay">
+      <div class="srv-overlay-head"><span class="srv-pill" aria-hidden="true">🏗</span><h4>Switchyard</h4></div>
+      <p>Erection, testing &amp; commissioning of switchyards, transformers and associated bays.</p>
+      <a class="srv-link" href="#contact">Read more</a>
+    </div>
+  </article>
+
+  <article class="srv-card srv-card--image reveal" tabindex="0">
+    <div class="srv-body">
+      <img src="images/services_liaison.jpg" alt="Liaison and approvals" />
+      <div class="srv-bar"><h4>Liaison &amp; Approvals (UGVCL/PGVCL/DGVCL/GETCO/CEI)</h4></div>
+    </div>
+    <div class="srv-overlay">
+      <div class="srv-overlay-head"><span class="srv-pill" aria-hidden="true">📄</span><h4>Approvals</h4></div>
+      <p>Consulting &amp; liasioning for new connections, load changes, name changes and permits.</p>
+      <a class="srv-link" href="#contact">Read more</a>
+    </div>
+  </article>
+
+  <article class="srv-card srv-card--image reveal" tabindex="0">
+    <div class="srv-body">
+      <img src="images/services_factory_wiring.jpg" alt="Factory wiring & installation" />
+      <div class="srv-bar"><h4>Factory Wiring &amp; Installations</h4></div>
+    </div>
+    <div class="srv-overlay">
+      <div class="srv-overlay-head"><span class="srv-pill" aria-hidden="true">🏭</span><h4>Factory Wiring</h4></div>
+      <p>LV/MV distribution, process loads, earthing &amp; compliance documentation.</p>
+      <a class="srv-link" href="#contact">Read more</a>
+    </div>
+  </article>
+
+  <article class="srv-card srv-card--image reveal" tabindex="0">
+    <div class="srv-body">
+      <img src="images/services_getco.jpg" alt="GETCO transmission and substation approvals" />
+      <div class="srv-bar"><h4>GETCO TL &amp; Substation Approvals</h4></div>
+    </div>
+    <div class="srv-overlay">
+      <div class="srv-overlay-head"><span class="srv-pill" aria-hidden="true">🛰</span><h4>GETCO</h4></div>
+      <p>Design coordination, route approvals &amp; compliance for TL and substation assets.</p>
+      <a class="srv-link" href="#contact">Read more</a>
+    </div>
+  </article>
+
+  <article class="srv-card srv-card--image reveal" tabindex="0">
+    <div class="srv-body">
+      <img src="images/service_solar.jpg" alt="Solar installation" />
+      <div class="srv-bar"><h4>Solar Installation (Residential • Commercial • Industrial)</h4></div>
+    </div>
+    <div class="srv-overlay">
+      <div class="srv-overlay-head"><span class="srv-pill" aria-hidden="true">☀️</span><h4>Solar</h4></div>
+      <p>Rooftop &amp; ground-mount solutions with net-metering and utility approvals.</p>
+      <a class="srv-link" href="#contact">Read more</a>
+    </div>
+  </article>
+
+  <article class="srv-card srv-card--image reveal" tabindex="0">
+    <div class="srv-body">
+      <img src="images/services_dg.jpg" alt="DG set installation" />
+      <div class="srv-bar"><h4>DG Set Approval &amp; Installation</h4></div>
+    </div>
+    <div class="srv-overlay">
+      <div class="srv-overlay-head"><span class="srv-pill" aria-hidden="true">🔋</span><h4>DG Sets</h4></div>
+      <p>Capacity sizing, foundation, exhaust, earthing &amp; statutory approvals.</p>
+      <a class="srv-link" href="#contact">Read more</a>
+    </div>
+  </article>
+
+  <article class="srv-card srv-card--image reveal" tabindex="0">
+    <div class="srv-body">
+      <img src="images/services_meter.jpg" alt="Energy meter approvals and duty" />
+      <div class="srv-bar"><h4>Energy Meter Approvals &amp; Duty Cases</h4></div>
+    </div>
+    <div class="srv-overlay">
+      <div class="srv-overlay-head"><span class="srv-pill" aria-hidden="true">🧾</span><h4>Metering</h4></div>
+      <p>Metering schemes, CT/PT selection, testing &amp; approval documentation.</p>
+      <a class="srv-link" href="#contact">Read more</a>
+    </div>
+  </article>
+
+  <article class="srv-card srv-card--image reveal" tabindex="0">
+    <div class="srv-body">
+      <img src="images/services_oil_earthing.jpg" alt="Transformer oil filtration & earthing" />
+      <div class="srv-bar"><h4>Transformer Oil Filtration &amp; Earthing</h4></div>
+    </div>
+    <div class="srv-overlay">
+      <div class="srv-overlay-head"><span class="srv-pill" aria-hidden="true">🧪</span><h4>Testing &amp; Earthing</h4></div>
+      <p>Oil filtration &amp; BDV tests; conventional &amp; maintenance-free earthing with reports.</p>
+      <a class="srv-link" href="#contact">Read more</a>
+    </div>
+  </article>
+
+  <article class="srv-card srv-card--image reveal" tabindex="0">
+    <div class="srv-body">
+      <img src="images/services_agri.jpg" alt="Agriculture electrical connections" />
+      <div class="srv-bar"><h4>Agriculture Connections (Without NA)</h4></div>
+    </div>
+    <div class="srv-overlay">
+      <div class="srv-overlay-head"><span class="srv-pill" aria-hidden="true">🌾</span><h4>Agriculture</h4></div>
+      <p>End-to-end support for agri connections, documentation &amp; inspections.</p>
+      <a class="srv-link" href="#contact">Read more</a>
+    </div>
+  </article>
+
+  <article class="srv-card srv-card--image reveal" tabindex="0">
+    <div class="srv-body">
+      <img src="images/services_land_na.jpg" alt="Land NA and AUDA approvals" />
+      <div class="srv-bar"><h4>Land NA, Plan &amp; AUDA Approvals</h4></div>
+    </div>
+    <div class="srv-overlay">
+      <div class="srv-overlay-head"><span class="srv-pill" aria-hidden="true">🗺</span><h4>Land &amp; AUDA</h4></div>
+      <p>Plan preparation, submissions and follow-ups for NA, layout and authority clearances.</p>
+      <a class="srv-link" href="#contact">Read more</a>
+    </div>
+  </article>
+
+</div>
+
+
+    <!-- CTA -->
+    <div class="services-cta reveal">
+      <h3>Need a detailed proposal?</h3>
+      <p>Share your requirements and we’ll prepare a tailored scope, schedule &amp; estimate.</p>
+      <a class="btn btn-quote" href="#contact">Request a Quote</a>
+    </div>
+  </div>
+</section>
+
+
+
+
+    <!-- MANUFACTURING 
     <section id="manufacturing" class="section">
       <h2>Manufacturing &amp; Supply</h2>
       <p>We manufacture high-quality LT electrical panels and supply capital goods required for industrial and commercial electrification:</p>
@@ -226,11 +503,129 @@ document.addEventListener('DOMContentLoaded', () => {
         <li>Package Substations, HT Stabilizers, and Combo Systems</li>
         <li>Rectifiers for DC Applications</li>
       </ul>
-    </section>
+    </section>-->
 
-    <!-- SISTERS -->
+<section id="manufacturing" class="section mfg-rows">
+  <div class="mfg-head">
+    <h2>Manufacturing &amp; Supply</h2>
+    <p>Engineered LT panels and capital goods built to spec, tested, and delivered with documentation.</p>
+  </div>
+
+  <!-- Row 1 -->
+  <article class="mfg-row mfg-reveal">
+    <div class="mfg-media">
+      <img src="images/service1.jpg" alt="PCC, MCC, APFC, Synchronizing Panels">
+      <span class="mfg-wipe" aria-hidden="true"></span>
+    </div>
+    <div class="mfg-info">
+      <h3>PCC / MCC / APFC / Synchronizing</h3>
+      <p>Power &amp; motor control assemblies with protection, metering, interlocks &amp; automation. FAT-compliant builds with documentation.</p>
+      <ul class="mfg-bullets">
+        <li>Type‑tested build &amp; busbar sizing</li>
+        <li>PLC/SCADA integration</li>
+        <li>On‑site testing &amp; commissioning</li>
+      </ul>
+      <a href="#contact" class="btn mfg-cta btn-quote">Request a Quote</a>
+    </div>
+  </article>
+
+  <!-- Row 2 (reversed) -->
+  <article class="mfg-row mfg-rev mfg-reveal">
+    <div class="mfg-media">
+      <img src="images/service2.jpg" alt="Feeder Pillars & Distribution Boards">
+      <span class="mfg-wipe" aria-hidden="true"></span>
+    </div>
+    <div class="mfg-info">
+      <h3>Feeder Pillars &amp; Distribution Boards</h3>
+      <p>Outdoor/indoor, IP‑rated enclosures with custom busbar ratings, interlocks and labeling for safe distribution.</p>
+      <ul class="mfg-bullets">
+        <li>IP55/IP65 options</li>
+        <li>Al/Cu busbar as per load</li>
+        <li>Factory acceptance tests</li>
+      </ul>
+      <a href="#contact" class="btn mfg-cta btn-quote">Get Specifications</a>
+    </div>
+  </article>
+
+  <!-- Row 3 -->
+  <article class="mfg-row mfg-reveal">
+    <div class="mfg-media">
+      <img src="images/service3.jpg" alt="OLTC, Dry Type, Isolation Transformers">
+      <span class="mfg-wipe" aria-hidden="true"></span>
+    </div>
+    <div class="mfg-info">
+      <h3>Transformers (OLTC / Dry / Isolation)</h3>
+      <p>Supply, installation &amp; testing with conservators, breathers, radiator banks &amp; protection devices to match site needs.</p>
+      <ul class="mfg-bullets">
+        <li>Oil &amp; dry‑type variants</li>
+        <li>CT/PT metering options</li>
+        <li>Testing &amp; reports</li>
+      </ul>
+      <a href="#contact" class="btn mfg-cta btn-quote">Check Availability</a>
+    </div>
+  </article>
+
+  <!-- Row 4 (reversed) -->
+  <article class="mfg-row mfg-rev mfg-reveal">
+    <div class="mfg-media">
+      <img src="images/service4.jpg" alt="Package Substations & Combo Systems">
+      <span class="mfg-wipe" aria-hidden="true"></span>
+    </div>
+    <div class="mfg-info">
+      <h3>Package Substations &amp; Combos</h3>
+      <p>Compact, factory‑integrated solutions for faster commissioning: transformer + switchgear + protection in one skid.</p>
+      <ul class="mfg-bullets">
+        <li>Outdoor compact CSS</li>
+        <li>Plug‑and‑play wiring</li>
+        <li>Shorter site timelines</li>
+      </ul>
+      <a href="#contact" class="btn mfg-cta btn-quote">Spec a Unit</a>
+    </div>
+  </article>
+
+  <!-- Row 5 -->
+  <article class="mfg-row mfg-reveal">
+    <div class="mfg-media">
+      <img src="images/service5.jpg" alt="Servo Control Motors & Stabilizers">
+      <span class="mfg-wipe" aria-hidden="true"></span>
+    </div>
+    <div class="mfg-info">
+      <h3>Servo Control Motors &amp; Stabilizers</h3>
+      <p>Voltage conditioning for sensitive loads and grid fluctuations with protection and bypass options.</p>
+      <ul class="mfg-bullets">
+        <li>HT/LT stabilizers</li>
+        <li>Fast correction speed</li>
+        <li>Bypass &amp; alarms</li>
+      </ul>
+      <a href="#contact" class="btn mfg-cta btn-quote">Ask an Expert</a>
+    </div>
+  </article>
+
+  <!-- Row 6 (reversed) -->
+  <article class="mfg-row mfg-rev mfg-reveal">
+    <div class="mfg-media">
+      <img src="images/service6.jpg" alt="Industrial DC Rectifiers">
+      <span class="mfg-wipe" aria-hidden="true"></span>
+    </div>
+    <div class="mfg-info">
+      <h3>Rectifiers (DC Applications)</h3>
+      <p>Rectifiers for plating, drives &amp; controls with suitable protections, cooling and output ratings.</p>
+      <ul class="mfg-bullets">
+        <li>Custom output ranges</li>
+        <li>Protection &amp; metering</li>
+        <li>Service &amp; spares</li>
+      </ul>
+      <a href="#contact" class="btn mfg-cta btn-quote">Share Requirements</a>
+    </div>
+  </article>
+</section>
+
+
+
+
+    <!-- SUBSIDARIES 
     <section id="sisters" class="section">
-      <h2>Sister Companies</h2>
+      <h2>Subsidaries</h2>
       <ul>
         <li><strong><a href="https://aktransformers.com/" target="_blank">A K Transformers</a>:</strong> Manufacturer of Power &amp; Distribution Transformers</li>
         <li><strong>Hasti Switchgear:</strong> MCBs, Distribution Boards; channel partner for Schneider, Havells, etc.</li>
@@ -239,7 +634,119 @@ document.addEventListener('DOMContentLoaded', () => {
         <li><strong>Jai Tel:</strong> BSNL Tower Electrical Contracting &amp; Maintenance</li>
         <li><strong>Electro Earth:</strong> Maintenance-Free Earthing Systems (IS:1239 Compliant)</li>
       </ul>
-    </section>
+    </section> -->
+
+    <section id="sisters" class="section sisters-section">
+  <div class="sisters-head">
+    <h2>Sister Companies</h2>
+    <p>Specialized manufacturing, supply and services—one ecosystem for end‑to‑end electrical solutions.</p>
+  </div>
+
+  <div class="sisters-grid">
+    <!-- A K Transformers -->
+    <article class="sister-card sister-reveal">
+      <div class="sister-ribbon">Power</div>
+      <div class="sister-logo">
+        <img src="images/client1.jpg" alt="A K Transformers logo">
+      </div>
+      <div class="sister-body">
+        <h3>A K Transformers</h3>
+        <p>Manufacturer of Power &amp; Distribution Transformers, CSS &amp; Control Transformers.</p>
+        <div class="sister-tags">
+          <span class="tag">Transformers</span>
+          <span class="tag">Package Substations</span>
+        </div>
+        <a class="sister-link" href="https://aktransformers.com/" target="_blank" rel="noopener">Visit site</a>
+      </div>
+    </article>
+
+    <!-- Hasti Switchgear -->
+    <article class="sister-card sister-reveal">
+      <div class="sister-ribbon">Switchgear</div>
+      <div class="sister-logo">
+        <img src="images/client2.jpg" alt="Hasti Switchgear logo">
+      </div>
+      <div class="sister-body">
+        <h3>Hasti Switchgear</h3>
+        <p>MCBs, Distribution Boards; Channel Partner for Schneider, Havells &amp; more.</p>
+        <div class="sister-tags">
+          <span class="tag">MCB/DB</span>
+          <span class="tag">Channel Partner</span>
+        </div>
+        <!--<a class="sister-link" href="#" target="_blank" rel="noopener">Learn more</a>..-->
+      </div>
+    </article>
+
+    <!-- Jay Enterprise -->
+    <article class="sister-card sister-reveal">
+      <div class="sister-ribbon">Fabrication</div>
+      <div class="sister-logo">
+        <img src="images/client3.jpg" alt="Jay Enterprise logo">
+      </div>
+      <div class="sister-body">
+        <h3>Jay Enterprise</h3>
+        <p>Fabrication of Cable Trays, Junction Boxes &amp; Bus Bar Trunking Systems.</p>
+        <div class="sister-tags">
+          <span class="tag">Cable Trays</span>
+          <span class="tag">BBT</span>
+        </div>
+        <!--<a class="sister-link" href="#" target="_blank" rel="noopener">Learn more</a>..-->
+      </div>
+    </article>
+
+    <!-- Jay Copper & Alloys -->
+    <article class="sister-card sister-reveal">
+      <div class="sister-ribbon">Copper • Alloys</div>
+      <div class="sister-logo">
+        <img src="images/client4.png" alt="Jay Copper and Alloys logo">
+      </div>
+      <div class="sister-body">
+        <h3>Jay Copper &amp; Alloys Pvt. Ltd.</h3>
+        <p>Supplier of Copper Tubes &amp; Alloys for HVAC, Plumbing, Solar &amp; Electrical.</p>
+        <div class="sister-tags">
+          <span class="tag">Copper</span>
+          <span class="tag">HVAC</span>
+        </div>
+        <!--<a class="sister-link" href="#" target="_blank" rel="noopener">Learn more</a>..-->
+      </div>
+    </article>
+
+    <!-- Jai Tel -->
+    <article class="sister-card sister-reveal">
+      <div class="sister-ribbon">Telecom</div>
+      <div class="sister-logo">
+        <img src="images/client5.png" alt="Jai Tel logo">
+      </div>
+      <div class="sister-body">
+        <h3>Jai Tel</h3>
+        <p>BSNL Tower Electrical Contracting &amp; Maintenance.</p>
+        <div class="sister-tags">
+          <span class="tag">Towers</span>
+          <span class="tag">O&amp;M</span>
+        </div>
+        <!--<a class="sister-link" href="#" target="_blank" rel="noopener">Learn more</a>..-->
+      </div>
+    </article>
+
+    <!-- Electro Earth -->
+    <article class="sister-card sister-reveal">
+      <div class="sister-ribbon">Earthing</div>
+      <div class="sister-logo">
+        <img src="images/client6.jpg" alt="Electro Earth logo">
+      </div>
+      <div class="sister-body">
+        <h3>Electro Earth</h3>
+        <p>Maintenance‑Free Earthing Systems (IS:1239 compliant) &amp; test reports.</p>
+        <div class="sister-tags">
+          <span class="tag">Earthing</span>
+          <span class="tag">Standards</span>
+        </div>
+        <!--<a class="sister-link" href="#" target="_blank" rel="noopener">Learn more</a>..-->
+      </div>
+    </article>
+  </div>
+</section>
+
 
     <!-- CONTACT -->
     <section id="contact" class="section">
@@ -276,8 +783,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <!-- Right: contact form -->
     <div class="contact-form">
       
-      <div class="container" id="ff-compose"></div>
-<script async defer src="https://formfacade.com/include/116718284293361581660/form/1FAIpQLSfGmOik1DojU7tb-ZkNxu5DPri__xts3-WybyoZ5kv1fQ4qug/bootstrap.js?div=ff-compose"></script>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfGmOik1DojU7tb-ZkNxu5DPri__xts3-WybyoZ5kv1fQ4qug/viewform?embedded=true" width="640" height="820" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
     </div>
   </div>
 
