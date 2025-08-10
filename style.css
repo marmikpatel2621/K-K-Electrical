@@ -252,8 +252,8 @@ main {
 .service-card:nth-child(6) { animation-delay: 0.6s; }
 .service-card img {
   width: 100%;
-  height: 140px;
-  object-fit: cover;
+  height: 150px;
+  object-fit: contain;
 }
 .service-card h4 {
   margin: 0.75em 0;
@@ -539,7 +539,7 @@ footer {
 .srv-more{ color: var(--accent-color); font-weight:700; }
 
 /* Image card */
-.srv-card--image img{ display:block; width:100%; height:220px; object-fit:cover; }
+.srv-card--image img{ display:block; width:100%; height:220px; object-fit:fill; }
 .srv-bar{ background:#fff; border-top:4px solid var(--accent-color); padding: 14px 16px; }
 .srv-bar h4{ margin:0; font-size:1rem; font-weight:700; line-height:1.4 }
 
@@ -584,7 +584,7 @@ footer {
 /* Body (image + bottom title bar) */
 .srv-card--image{ position:relative; overflow:hidden; }
 .srv-body{ position:relative; z-index:1; }
-.srv-card--image img{ display:block; width:100%; height:220px; object-fit:cover; }
+.srv-card--image img{ display:block; width:100%; height:220px; object-fit:fill; }
 .srv-bar{
   background:#fff; border-top:4px solid var(--accent-color);
   padding:14px 16px; min-height:56px;
@@ -656,7 +656,7 @@ footer {
   background:#000;
 }
 .mfg-media img{
-  width:100%; height:100%; max-height:320px; object-fit:cover;
+  width:100%; height:100%; max-height:320px; object-fit:fill;
   display:block; transform: scale(1); transition: transform .6s ease, filter .6s ease;
   filter: brightness(.95);
 }
@@ -812,14 +812,15 @@ footer {
 .has-io .group-reveal.visible{ opacity:1; transform: translateY(0); }
 
 .group-logo{
-  background: linear-gradient(180deg,#111,#1a1a1a);
+  background: linear-gradient(180deg,rgba(0,0,0,.10),rgba(0,0,0,.10));
   display:flex; align-items:center; justify-content:center;
-  padding: 24px 16px;
+  padding: 8px 8px;
 }
 .group-logo img{
-  max-height:72px; max-width:80%; object-fit:contain;
+  height:150px; max-width:100%;
   filter: drop-shadow(0 2px 6px rgba(0,0,0,.25));
   transition: transform .25s ease;
+  object-fit:contain;
 }
 .group-card:hover .group-logo img{ transform: translateY(-2px) scale(1.03); }
 
