@@ -93,6 +93,42 @@ if ('IntersectionObserver' in window) {
   }, { threshold: 0.15 });
   sisterTiles.forEach(t => ioSisters.observe(t));
 }
+
+// Reveal on scroll
+  const groupCards = document.querySelectorAll('#group .group-reveal');
+  if ('IntersectionObserver' in window) {
+    document.documentElement.classList.add('has-io');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => en.target.classList.toggle('visible', en.isIntersecting));
+    }, { threshold: 0.15 });
+    groupCards.forEach(c => io.observe(c));
+  }
+
+  // Slider arrows
+  const track = document.querySelector('#group .group-track');
+  const prevBtn = document.querySelector('#group .group-prev');
+  const nextBtn = document.querySelector('#group .group-next');
+
+  function updateArrows(){
+    if (!track) return;
+    const maxScroll = track.scrollWidth - track.clientWidth;
+    prevBtn.disabled = track.scrollLeft <= 0;
+    nextBtn.disabled = track.scrollLeft >= maxScroll - 1;
+  }
+  function scrollByCards(dir = 1){
+    if (!track) return;
+    const card = track.querySelector('.group-card');
+    const step = card ? card.getBoundingClientRect().width + 16 : 300;
+    track.scrollBy({ left: dir * step, behavior: 'smooth' });
+  }
+
+  if (track) {
+    updateArrows();
+    track.addEventListener('scroll', updateArrows, { passive:true });
+    window.addEventListener('resize', updateArrows);
+  }
+  if (prevBtn) prevBtn.addEventListener('click', () => scrollByCards(-1));
+  if (nextBtn) nextBtn.addEventListener('click', () => scrollByCards(1));
 });
 </script>
 
@@ -108,7 +144,7 @@ if ('IntersectionObserver' in window) {
       <li><a href="#vision">Vision &amp; Goals</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#manufacturing">Manufacturing</a></li>
-      <li><a href="#sisters">Sister Cos.</a></li>
+      <li><a href="#group">Our Group Companies</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -636,116 +672,109 @@ if ('IntersectionObserver' in window) {
       </ul>
     </section> -->
 
-    <section id="sisters" class="section sisters-section">
-  <div class="sisters-head">
-    <h2>Sister Companies</h2>
-    <p>Specialized manufacturing, supply and services—one ecosystem for end‑to‑end electrical solutions.</p>
+    <section id="group" class="section group-section">
+  <div class="group-head">
+    <h2>Our Group Companies</h2>
+    <p>Specialized manufacturing, supply &amp; services under one trusted umbrella.</p>
   </div>
 
-  <div class="sisters-grid">
-    <!-- A K Transformers -->
-    <article class="sister-card sister-reveal">
-      <div class="sister-ribbon">Power</div>
-      <div class="sister-logo">
-        <img src="images/client1.jpg" alt="A K Transformers logo">
-      </div>
-      <div class="sister-body">
-        <h3>A K Transformers</h3>
-        <p>Manufacturer of Power &amp; Distribution Transformers, CSS &amp; Control Transformers.</p>
-        <div class="sister-tags">
-          <span class="tag">Transformers</span>
-          <span class="tag">Package Substations</span>
+  <div class="group-slider">
+    <button class="group-nav group-prev" aria-label="Previous">‹</button>
+    <div class="group-track">
+      <!-- Card 1 -->
+      <article class="group-card group-reveal">
+        <div class="group-logo">
+          <img src="images/client1.jpg" alt="A K Transformers">
         </div>
-        <a class="sister-link" href="https://aktransformers.com/" target="_blank" rel="noopener">Visit site</a>
-      </div>
-    </article>
+        <div class="group-body">
+          <h3>A K Transformers</h3>
+          <p>Power &amp; Distribution Transformers, CSS &amp; Control Transformers.</p>
+          <div class="group-tags">
+            <span class="tag">Transformers</span><span class="tag">CSS</span>
+          </div>
+          <a class="group-link" href="https://aktransformers.com/" target="_blank" rel="noopener">Visit site</a>
+        </div>
+      </article>
 
-    <!-- Hasti Switchgear -->
-    <article class="sister-card sister-reveal">
-      <div class="sister-ribbon">Switchgear</div>
-      <div class="sister-logo">
-        <img src="images/client2.jpg" alt="Hasti Switchgear logo">
-      </div>
-      <div class="sister-body">
-        <h3>Hasti Switchgear</h3>
-        <p>MCBs, Distribution Boards; Channel Partner for Schneider, Havells &amp; more.</p>
-        <div class="sister-tags">
-          <span class="tag">MCB/DB</span>
-          <span class="tag">Channel Partner</span>
+      <!-- Card 2 -->
+      <article class="group-card group-reveal">
+        <div class="group-logo">
+          <img src="images/client2.jpg" alt="Hasti Switchgear">
         </div>
-        <!--<a class="sister-link" href="#" target="_blank" rel="noopener">Learn more</a>..-->
-      </div>
-    </article>
+        <div class="group-body">
+          <h3>Hasti Switchgear</h3>
+          <p>MCBs, DBs &amp; channel partner for Schneider, Havells and more.</p>
+          <div class="group-tags">
+            <span class="tag">MCB/DB</span><span class="tag">Partner</span>
+          </div>
+          <a class="group-link" href="#" target="_blank" rel="noopener">Learn more</a>
+        </div>
+      </article>
 
-    <!-- Jay Enterprise -->
-    <article class="sister-card sister-reveal">
-      <div class="sister-ribbon">Fabrication</div>
-      <div class="sister-logo">
-        <img src="images/client3.jpg" alt="Jay Enterprise logo">
-      </div>
-      <div class="sister-body">
-        <h3>Jay Enterprise</h3>
-        <p>Fabrication of Cable Trays, Junction Boxes &amp; Bus Bar Trunking Systems.</p>
-        <div class="sister-tags">
-          <span class="tag">Cable Trays</span>
-          <span class="tag">BBT</span>
+      <!-- Card 3 -->
+      <article class="group-card group-reveal">
+        <div class="group-logo">
+          <img src="images/client3.jpg" alt="Jay Enterprise">
         </div>
-        <!--<a class="sister-link" href="#" target="_blank" rel="noopener">Learn more</a>..-->
-      </div>
-    </article>
+        <div class="group-body">
+          <h3>Jay Enterprise</h3>
+          <p>Fabrication of Cable Trays, Junction Boxes &amp; Bus Bar Trunking.</p>
+          <div class="group-tags">
+            <span class="tag">Cable Trays</span><span class="tag">BBT</span>
+          </div>
+          <a class="group-link" href="#" target="_blank" rel="noopener">Learn more</a>
+        </div>
+      </article>
 
-    <!-- Jay Copper & Alloys -->
-    <article class="sister-card sister-reveal">
-      <div class="sister-ribbon">Copper • Alloys</div>
-      <div class="sister-logo">
-        <img src="images/client4.png" alt="Jay Copper and Alloys logo">
-      </div>
-      <div class="sister-body">
-        <h3>Jay Copper &amp; Alloys Pvt. Ltd.</h3>
-        <p>Supplier of Copper Tubes &amp; Alloys for HVAC, Plumbing, Solar &amp; Electrical.</p>
-        <div class="sister-tags">
-          <span class="tag">Copper</span>
-          <span class="tag">HVAC</span>
+      <!-- Card 4 -->
+      <article class="group-card group-reveal">
+        <div class="group-logo">
+          <img src="images/client4.png" alt="Jay Copper & Alloys">
         </div>
-        <!--<a class="sister-link" href="#" target="_blank" rel="noopener">Learn more</a>..-->
-      </div>
-    </article>
+        <div class="group-body">
+          <h3>Jay Copper &amp; Alloys</h3>
+          <p>Copper tubes &amp; alloys for HVAC, plumbing, solar &amp; electrical.</p>
+          <div class="group-tags">
+            <span class="tag">Copper</span><span class="tag">HVAC</span>
+          </div>
+          <a class="group-link" href="#" target="_blank" rel="noopener">Learn more</a>
+        </div>
+      </article>
 
-    <!-- Jai Tel -->
-    <article class="sister-card sister-reveal">
-      <div class="sister-ribbon">Telecom</div>
-      <div class="sister-logo">
-        <img src="images/client5.png" alt="Jai Tel logo">
-      </div>
-      <div class="sister-body">
-        <h3>Jai Tel</h3>
-        <p>BSNL Tower Electrical Contracting &amp; Maintenance.</p>
-        <div class="sister-tags">
-          <span class="tag">Towers</span>
-          <span class="tag">O&amp;M</span>
+      <!-- Card 5 -->
+      <article class="group-card group-reveal">
+        <div class="group-logo">
+          <img src="images/client5.png" alt="Jai Tel">
         </div>
-        <!--<a class="sister-link" href="#" target="_blank" rel="noopener">Learn more</a>..-->
-      </div>
-    </article>
+        <div class="group-body">
+          <h3>Jai Tel</h3>
+          <p>BSNL tower electrical contracting &amp; maintenance.</p>
+          <div class="group-tags">
+            <span class="tag">Telecom</span><span class="tag">O&amp;M</span>
+          </div>
+          <a class="group-link" href="#" target="_blank" rel="noopener">Learn more</a>
+        </div>
+      </article>
 
-    <!-- Electro Earth -->
-    <article class="sister-card sister-reveal">
-      <div class="sister-ribbon">Earthing</div>
-      <div class="sister-logo">
-        <img src="images/client6.jpg" alt="Electro Earth logo">
-      </div>
-      <div class="sister-body">
-        <h3>Electro Earth</h3>
-        <p>Maintenance‑Free Earthing Systems (IS:1239 compliant) &amp; test reports.</p>
-        <div class="sister-tags">
-          <span class="tag">Earthing</span>
-          <span class="tag">Standards</span>
+      <!-- Card 6 -->
+      <article class="group-card group-reveal">
+        <div class="group-logo">
+          <img src="images/client6.jpg" alt="Electro Earth">
         </div>
-        <!--<a class="sister-link" href="#" target="_blank" rel="noopener">Learn more</a>..-->
-      </div>
-    </article>
+        <div class="group-body">
+          <h3>Electro Earth</h3>
+          <p>Maintenance‑Free Earthing Systems (IS:1239 compliant).</p>
+          <div class="group-tags">
+            <span class="tag">Earthing</span><span class="tag">Standards</span>
+          </div>
+          <a class="group-link" href="#" target="_blank" rel="noopener">Learn more</a>
+        </div>
+      </article>
+    </div>
+    <button class="group-nav group-next" aria-label="Next">›</button>
   </div>
 </section>
+
 
 
     <!-- CONTACT -->
@@ -801,7 +830,7 @@ if ('IntersectionObserver' in window) {
       <a href="#vision">Vision &amp; Goals</a> |
       <a href="#services">Services</a> |
       <a href="#manufacturing">Manufacturing &amp; Supply</a> |
-      <a href="#sisters">Sister Companies</a> |
+      <a href="#group">Our Group Companies</a> |
       <a href="#contact">Contact Us</a>
     </div>
     <p>&copy; 2025 KK Electrical Services. All Rights Reserved.</p>
