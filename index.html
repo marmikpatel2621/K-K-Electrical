@@ -104,6 +104,19 @@ if ('IntersectionObserver' in window) {
     groupCards.forEach(c => io.observe(c));
   }
 
+  const visReveals = document.querySelectorAll('#vision .vision-reveal');
+  if ('IntersectionObserver' in window) {
+    document.documentElement.classList.add('has-io');
+    const ioV = new IntersectionObserver((entries)=> {
+    entries.forEach(en => en.target.classList.toggle('visible', en.isIntersecting));
+    }, { threshold: 0.15 });
+    visReveals.forEach(el => ioV.observe(el));
+  } else {
+    visReveals.forEach(el => el.classList.add('visible'));
+  }
+
+  
+
   // Slider arrows
   const track = document.querySelector('#group .group-track');
   const prevBtn = document.querySelector('#group .group-prev');
@@ -151,7 +164,7 @@ if ('IntersectionObserver' in window) {
 
   <!-- Hero -->
   <header class="hero">
-    <img src="header2.jpg" alt="Header Image">
+    <img src="images/header2.jpg" alt="Header Image">
     <div class="overlay">
       <div class="tagline">Powering Your World with Trusted Electrical Solutions</div>
       <div class="tagline-small">With Reliability, Efficiency and Customer Satisfaction</div>
@@ -250,20 +263,101 @@ if ('IntersectionObserver' in window) {
     </section>
 
     <!-- VISION -->
-    <section id="vision" class="section">
-      <h2>Vision &amp; Goals</h2>
-      <p>At KK Electrical Services, our vision is to become the premier partner for safe, sustainable and cutting-edge electrical solutions—building a more efficient world by delivering excellence, transparency and integrity in every project. We aim to set the standard for quality across contracting, panel manufacturing, energy auditing and system design by continuously innovating energy-saving concepts and forging long-term, value-driven relationships with our clients, employees and partners.</p>
-      <h3>Goals</h3>
-      <ul>
-        <li><strong>Exceed Client Expectations:</strong> Deliver on-time, on-budget electrical services—with uncompromising quality and safety.</li>
-        <li><strong>Foster Trust &amp; Transparency:</strong> Open communication and full accountability in consultations, permitting and approvals.</li>
-        <li><strong>Innovate for Efficiency:</strong> Licensed energy audits and cutting-edge tech to optimize consumption and costs.</li>
-        <li><strong>Manufacture with Precision:</strong> Custom LT panels—PCC, MCC, APFC, synchronizing and automation panels.</li>
-        <li><strong>Expand Value-Added Services:</strong> Supply capital goods through our sister concerns for end-to-end excellence.</li>
-        <li><strong>Cultivate Lasting Partnerships:</strong> Ethical practices, team investment, and sustainable value creation.</li>
-      </ul>
-      <p>Together, these principles drive us to surpass the highest standards of performance, safety and customer satisfaction on every project.</p>
-    </section>
+    <section id="vision" class="section vision-section">
+  <!-- Slim hero -->
+  <header class="vision-hero vision-reveal">
+    <div class="vh-badge">Vision &amp; Goals</div>
+    <h2>Build long‑term value through excellence, integrity &amp; transparency</h2>
+    <p>We aim to be the most trusted partner for safe, sustainable, and efficient electrical solutions — delivering quality and accountability across EPC, panel manufacturing, energy auditing and system design.</p>
+    <a href="#contact" class="btn vision-cta btn-quote">Request a Quote</a>
+  </header>
+
+  <!-- Pillars -->
+  <section class="vision-pillars">
+    <article class="pillar vision-reveal">
+      <span class="ic">🏗</span>
+      <h3>Project Excellence</h3>
+      <p>End‑to‑end planning, installation, testing &amp; commissioning for LT/HT, substations, cabling and approvals — managed to rigorous QA standards.</p>
+    </article>
+    <article class="pillar vision-reveal">
+      <span class="ic">🤝</span>
+      <h3>Relationships</h3>
+      <p>Enjoyable, long‑term partnerships with clients, employees and suppliers — built on integrity, transparency and accountability.</p>
+    </article>
+    <article class="pillar vision-reveal">
+      <span class="ic">⚙️</span>
+      <h3>Manufacturing</h3>
+      <p>PCC, MCC, APFC, synchronizing, distribution &amp; custom automation panels built to spec with documentation and FAT compliance.</p>
+    </article>
+    <article class="pillar vision-reveal">
+      <span class="ic">📉</span>
+      <h3>Energy Outcomes</h3>
+      <p>Licensed energy audits (G‑64), implementation &amp; monitoring to cut consumption without compromising performance.</p>
+    </article>
+  </section>
+
+  <!-- Goals timeline -->
+  <section class="vision-timeline">
+    <h3 class="vision-reveal">Our Goals</h3>
+    <ol class="timeline">
+      <li class="vision-reveal">
+        <div class="dot"></div>
+        <div class="card">
+          <h4>Exceed Client Expectations</h4>
+          <p>Deliver on‑time, on‑budget with uncompromising quality &amp; safety across projects of any scale.</p>
+        </div>
+      </li>
+      <li class="vision-reveal">
+        <div class="dot"></div>
+        <div class="card">
+          <h4>Trust &amp; Transparency</h4>
+          <p>Clear communication and full accountability in consultations, permitting and approvals (UGVCL/PGVCL/DGVCL/GETCO/CEI).</p>
+        </div>
+      </li>
+      <li class="vision-reveal">
+        <div class="dot"></div>
+        <div class="card">
+          <h4>Innovate for Efficiency</h4>
+          <p>Deploy practical, energy‑saving concepts that measurably reduce operating costs.</p>
+        </div>
+      </li>
+      <li class="vision-reveal">
+        <div class="dot"></div>
+        <div class="card">
+          <h4>Manufacture with Precision</h4>
+          <p>Engineer LT panels and capital goods with proven processes, test records and handover documentation.</p>
+        </div>
+      </li>
+      <li class="vision-reveal">
+        <div class="dot"></div>
+        <div class="card">
+          <h4>Grow End‑to‑End Capability</h4>
+          <p>Extend value via our group companies across supply, fabrication and earthing systems.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- Capabilities band -->
+  <section class="vision-capabilities">
+    <div class="cap vision-reveal">
+      <h5>Contracting</h5>
+      <p>HT/LT lines, switchyards, DG sets, housing/commercial/industrial electrification.</p>
+    </div>
+    <div class="cap vision-reveal">
+      <h5>Panel Manufacturing</h5>
+      <p>PCC, MCC, APFC, feeders, starters, automation &amp; custom builds.</p>
+    </div>
+    <div class="cap vision-reveal">
+      <h5>Energy Audit</h5>
+      <p>Audit → implementation → monitoring; licensed auditor (G‑64).</p>
+    </div>
+    <div class="cap vision-reveal">
+      <h5>Capital Goods</h5>
+      <p>Transformers (incl. OLTC, dry‑type, isolation), stabilizers, rectifiers &amp; CSS.</p>
+    </div>
+  </section>
+</section>
 
     <!-- SERVICES 
     <section id="services" class="section">
