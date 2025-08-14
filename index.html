@@ -106,7 +106,6 @@ if ('IntersectionObserver' in window) {
 
   const visReveals = document.querySelectorAll('#vision .vision-reveal');
   if ('IntersectionObserver' in window) {
-    document.documentElement.classList.add('has-io');
     const ioV = new IntersectionObserver((entries)=> {
     entries.forEach(en => en.target.classList.toggle('visible', en.isIntersecting));
     }, { threshold: 0.15 });
