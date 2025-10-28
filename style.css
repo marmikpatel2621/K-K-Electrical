@@ -952,3 +952,30 @@ footer {
 .vision-capabilities .cap:nth-child(2) { transition-delay: 0.2s; }
 .vision-capabilities .cap:nth-child(3) { transition-delay: 0.3s; }
 .vision-capabilities .cap:nth-child(4) { transition-delay: 0.4s; }
+
+
+/* Mobile hero image fix */
+@media (max-width: 768px) {
+  header.hero img {
+    height: auto;
+    min-height: 60vh; /* fill visible area */
+  }
+
+  header.hero {
+    height: auto;
+  }
+
+  header.hero .overlay {
+    padding: 4em 1em;
+  }
+
+  header.hero .overlay .tagline {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+
+  header.hero .overlay .tagline-small {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+}
