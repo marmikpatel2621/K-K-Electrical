@@ -979,74 +979,33 @@ footer {
     text-align: center;
   }
 }
-/* ===========================================
-   📱 Mobile Navigation Responsive Styles
-   =========================================== */
-.nav-toggle {
-  display: none;
-  font-size: 1.9rem;
-  color: #fff;
-  background: none;
-  border: none;
-  cursor: pointer;
-  margin-left: auto;
-  padding: 0.2em 0.5em;
-}
 
-.nav-links ul {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-links li {
-  margin: 0 1em;
-}
-
-.nav-links a {
-  color: var(--text-light);
-  font-weight: 600;
-  transition: color 0.3s;
-}
-
-.nav-links a:hover {
-  color: var(--accent-color);
-}
-
-/* --- Mobile behavior --- */
+/* ✅ Fix navigation wrapping on mobile */
 @media (max-width: 850px) {
-  .nav-toggle {
-    display: block;
-    z-index: 1001;
-  }
-
-  .nav-links {
-    display: none;
-    width: 100%;
-    background: var(--nav-background);
-    position: absolute;
-    top: 100%;
-    left: 0;
+  .top-nav {
+    flex-wrap: wrap;
+    justify-content: center;
     text-align: center;
-    z-index: 1000;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   }
 
-  .nav-links.open {
-    display: block;
+  .top-nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin-top: 0.5em;
   }
 
-  .nav-links ul {
-    flex-direction: column;
-    padding: 1em 0;
+  .top-nav li {
+    margin: 0.4em 0.8em;
   }
 
-  .nav-links li {
-    margin: 0.8em 0;
+  .top-nav a {
+    font-size: 0.95rem;
+    white-space: nowrap;
   }
 
   .logo-small {
     height: 60px;
+    margin: 0 auto;
   }
 }
