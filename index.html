@@ -50,6 +50,7 @@
 
   <link rel="stylesheet" href="style.css">
   
+</script>
   <script>
     window.addEventListener('DOMContentLoaded', () => {
       const sections = document.querySelectorAll('.section');
@@ -158,6 +159,8 @@ if ('IntersectionObserver' in window) {
     visReveals.forEach(el => ioV.observe(el));
   }
 
+  
+
   // Slider arrows
   const track = document.querySelector('#group .group-track');
   const prevBtn = document.querySelector('#group .group-prev');
@@ -185,36 +188,23 @@ if ('IntersectionObserver' in window) {
   if (nextBtn) nextBtn.addEventListener('click', () => scrollByCards(1));
 });
 </script>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const toggle = document.querySelector('.nav-toggle');
-  const navLinks = document.querySelector('.nav-links');
-  toggle.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-  });
-});
+
 </script>
+
 </head>
 <body>
-  <!-- 🔧 Responsive Top Navigation -->
-<div class="top-nav">
-  <a href="#home"><img src="images/logo_new.png" class="logo-small" alt="Logo"></a>
-
-  <!-- Mobile toggle (hamburger) -->
-  <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
-
-  <!-- Navigation links -->
-  <div class="nav-links">
+  <!-- Top nav -->
+  <div class="top-nav">
+    <a href="#home"><img src="images/logo_new.png" class="logo-small" alt="Logo"></a>
     <ul>
       <li><a href="#home">Home</a></li>
       <li><a href="#vision">Vision &amp; Goals</a></li>
       <li><a href="#services">Services</a></li>
-      <li><a href="#manufacturing">Manufacturing &amp; Supplies</a></li>
+      <li><a href="#manufacturing">Manufacturing & Supplies</a></li>
       <li><a href="#group">Our Group Companies</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
-</div>
 
   <!-- Hero -->
   <header class="hero">
