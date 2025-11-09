@@ -1009,3 +1009,31 @@ footer {
     margin: 0 auto;
   }
 }
+
+/* SEO text styling */
+.seo-text {
+  background: #fafafa;
+  padding: 3rem 5%;
+  color: #222;
+  line-height: 1.6;
+}
+
+.seo-text .intro-title h2 {
+  color: var(--primary-color);
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.seo-text .content {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: justify;
+  font-size: 1rem;
+}
+
+.seo-text strong {
+  color: #333;
+  font-weight: 600;
+}
+
