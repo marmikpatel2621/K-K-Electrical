@@ -1011,32 +1011,30 @@ footer {
 }
 
 /* SEO text styling */
-#seo.section {
-  display: block !important;
-}
-
-.seo-text {
-  background: #fafafa;
-  padding: 3rem 5%;
+/* SEO Subsection Styling */
+.home-section .seo-text {
+  padding: 4rem 5%;
+  background: #fafafa; /* same subtle tone as QA or manufacturing background */
   color: #222;
-  line-height: 1.6;
+  line-height: 1.7;
+  border-top: 1px solid #eee;
 }
 
-.seo-text .intro-title h2 {
-  color: var(--primary-color);
-  font-size: 1.8rem;
+.home-section .seo-text .intro-title h2 {
   text-align: center;
+  font-size: 1.8rem;
+  color: var(--primary-color);
   margin-bottom: 1.5rem;
 }
 
-.seo-text .content {
-  max-width: 900px;
+.home-section .seo-text .content {
+  max-width: 950px;
   margin: 0 auto;
   text-align: justify;
   font-size: 1rem;
 }
 
-.seo-text strong {
+.home-section .seo-text strong {
   color: #333;
   font-weight: 600;
 }
