@@ -1011,6 +1011,10 @@ footer {
 }
 
 /* SEO text styling */
+#seo.section {
+  display: block !important;
+}
+
 .seo-text {
   background: #fafafa;
   padding: 3rem 5%;
