@@ -1012,72 +1012,77 @@ if ('IntersectionObserver' in window) {
   const KK_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzj0t5wkUpyEbOsIhLazyaA-37QjcHoJSaP7nAZ9i_vsckeW5eSakxsodGqV6B8nowa/exec";
 
   (function () {
-    const form = document.getElementById("kkContactForm");
-    const statusEl = document.getElementById("kkFormStatus");
-    const submitBtn = document.getElementById("kkSubmitBtn");
+  const form = document.getElementById("kkContactForm");
+  const statusEl = document.getElementById("kkFormStatus");
+  const submitBtn = document.getElementById("kkSubmitBtn");
 
-    function setStatus(msg) {
-      statusEl.textContent = msg || "";
+  function setStatus(msg, type) {
+    statusEl.textContent = msg || "";
+    statusEl.classList.remove("success", "error");
+    if (type) statusEl.classList.add(type);
+  }
+
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    submitBtn.disabled = true;
+
+    const payload = {
+      name: form.name.value.trim(),
+      email: form.email.value.trim(),
+      phone: form.phone.value.trim(),
+      location: form.location.value.trim(),
+      message: form.message.value.trim(),
+      website: (form.website?.value || "").trim(), // honeypot
+      page: location.href,
+      userAgent: navigator.userAgent
+    };
+
+    if (!payload.name || !payload.email || !payload.location || !payload.message) {
+      setStatus("Please fill required fields.", "error");
+      submitBtn.disabled = false;
+      return;
     }
 
-    function isValidEmail(email) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+    if (!isValidEmail(payload.email)) {
+      setStatus("Invalid email address.", "error");
+      submitBtn.disabled = false;
+      return;
     }
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      setStatus("");
+    setStatus("Sending...");
 
-      // Prevent double submits
-      submitBtn.disabled = true;
+    try {
+      const params = new URLSearchParams(payload);
 
-      const payload = {
-        name: form.name.value.trim(),
-        email: form.email.value.trim().toLowerCase(),
-        phone: form.phone.value.trim(),
-        location: form.location.value.trim(),
-        message: form.message.value.trim(),
-        website: (form.website?.value || "").trim(), // honeypot
-        page: location.href,
-        userAgent: navigator.userAgent
-      };
+      const res = await fetch(KK_SCRIPT_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+        },
+        body: params.toString()
+      });
 
-      // Client-side validation (server-side still validates)
-      if (!payload.name || !payload.email || !payload.location || !payload.message) {
-        setStatus("Please fill all required fields (*)");
-        submitBtn.disabled = false;
-        return;
+      const text = await res.text();
+      let out = {};
+      try { out = JSON.parse(text); } catch(e) {}
+
+      if (out.ok) {
+        form.reset();
+        setStatus("Thanks — we’ll be in touch shortly.", "success");
+      } else {
+        setStatus(out.error || "Submission failed.", "error");
       }
-      if (!isValidEmail(payload.email)) {
-        setStatus("Please enter a valid email address.");
-        submitBtn.disabled = false;
-        return;
-      }
+    } catch (err) {
+      setStatus("Network error. Please try again.", "error");
+    }
 
-      setStatus("Sending...");
-
-      try {
-        const res = await fetch(KK_SCRIPT_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
-        });
-
-        const out = await res.json().catch(() => ({}));
-
-        if (out.ok) {
-          form.reset();
-          setStatus("Thanks — we’ll be in touch shortly.");
-        } else {
-          setStatus(out.error ? `Error: ${out.error}` : "Error sending message.");
-        }
-      } catch (err) {
-        setStatus("Network error. Please try again.");
-      } finally {
-        submitBtn.disabled = false;
-      }
-    });
-  })();
+    submitBtn.disabled = false;
+  });
+})();
 </script>
 
 </body>
