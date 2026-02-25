@@ -74,8 +74,6 @@
 </script>
 
   <link rel="stylesheet" href="style.css">
-  
-</script>
   <script>
     window.addEventListener('DOMContentLoaded', () => {
       const sections = document.querySelectorAll('.section');
@@ -213,9 +211,6 @@ if ('IntersectionObserver' in window) {
   if (nextBtn) nextBtn.addEventListener('click', () => scrollByCards(1));
 });
 </script>
-
-</script>
-
 </head>
 <body>
   <!-- Top nav -->
@@ -956,8 +951,41 @@ if ('IntersectionObserver' in window) {
 
     <!-- Right: contact form -->
     <div class="contact-form">
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSda8VmKM91ZfwRESMN40_diXSTPVuvGegpIXuI9bcv1swVTEA/viewform?embedded=true" width="640" height="820" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+  <form id="kkContactForm" class="kk-contact-form" novalidate>
+    <div class="form-row">
+      <label for="name">Name *</label>
+      <input id="name" name="name" type="text" autocomplete="name" required maxlength="80" />
     </div>
+
+    <div class="form-row">
+      <label for="email">Email *</label>
+      <input id="email" name="email" type="email" autocomplete="email" required maxlength="120" />
+    </div>
+
+    <div class="form-row">
+      <label for="phone">Phone</label>
+      <input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="40" />
+    </div>
+
+    <div class="form-row">
+      <label for="location">Location (City/Area) *</label>
+      <input id="location" name="location" type="text" autocomplete="address-level2" required maxlength="120" />
+    </div>
+
+    <div class="form-row">
+      <label for="message">Message *</label>
+      <textarea id="message" name="message" rows="6" required maxlength="2000"></textarea>
+    </div>
+
+    <!-- Honeypot (anti-bot). Must stay empty -->
+    <div style="position:absolute; left:-5000px; top:auto; width:1px; height:1px; overflow:hidden;">
+      <label>Website <input name="website" type="text" tabindex="-1" autocomplete="off" /></label>
+    </div>
+
+    <button id="kkSubmitBtn" type="submit">Send</button>
+    <p id="kkFormStatus" style="margin-top:10px;"></p>
+  </form>
+</div>
   </div>
 
   <!-- Map embed -->
@@ -979,5 +1007,78 @@ if ('IntersectionObserver' in window) {
     </div>
     <p>&copy; 2025 KK Electrical Services. All Rights Reserved.</p>
   </footer>
+<script>
+  // ✅ Paste your Apps Script Web App URL here
+  const KK_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzj0t5wkUpyEbOsIhLazyaA-37QjcHoJSaP7nAZ9i_vsckeW5eSakxsodGqV6B8nowa/exec";
+
+  (function () {
+    const form = document.getElementById("kkContactForm");
+    const statusEl = document.getElementById("kkFormStatus");
+    const submitBtn = document.getElementById("kkSubmitBtn");
+
+    function setStatus(msg) {
+      statusEl.textContent = msg || "";
+    }
+
+    function isValidEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      setStatus("");
+
+      // Prevent double submits
+      submitBtn.disabled = true;
+
+      const payload = {
+        name: form.name.value.trim(),
+        email: form.email.value.trim().toLowerCase(),
+        phone: form.phone.value.trim(),
+        location: form.location.value.trim(),
+        message: form.message.value.trim(),
+        website: (form.website?.value || "").trim(), // honeypot
+        page: location.href,
+        userAgent: navigator.userAgent
+      };
+
+      // Client-side validation (server-side still validates)
+      if (!payload.name || !payload.email || !payload.location || !payload.message) {
+        setStatus("Please fill all required fields (*)");
+        submitBtn.disabled = false;
+        return;
+      }
+      if (!isValidEmail(payload.email)) {
+        setStatus("Please enter a valid email address.");
+        submitBtn.disabled = false;
+        return;
+      }
+
+      setStatus("Sending...");
+
+      try {
+        const res = await fetch(KK_SCRIPT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        const out = await res.json().catch(() => ({}));
+
+        if (out.ok) {
+          form.reset();
+          setStatus("Thanks — we’ll be in touch shortly.");
+        } else {
+          setStatus(out.error ? `Error: ${out.error}` : "Error sending message.");
+        }
+      } catch (err) {
+        setStatus("Network error. Please try again.");
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  })();
+</script>
+
 </body>
 </html>
