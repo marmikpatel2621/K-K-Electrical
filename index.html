@@ -1056,31 +1056,20 @@ if ('IntersectionObserver' in window) {
     setStatus("Sending...");
 
     try {
-      const params = new URLSearchParams(payload);
+  await fetch(KK_SCRIPT_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+    body: new URLSearchParams(payload).toString()
+  });
 
-      const res = await fetch(KK_SCRIPT_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-        },
-        body: params.toString()
-      });
-
-      const text = await res.text();
-      let out = {};
-      try { out = JSON.parse(text); } catch(e) {}
-
-      if (out.ok) {
-        form.reset();
-        setStatus("Thanks — we’ll be in touch shortly.", "success");
-      } else {
-        setStatus(out.error || "Submission failed.", "error");
-      }
-    } catch (err) {
-      setStatus("Network error. Please try again.", "error");
-    }
-
-    submitBtn.disabled = false;
+  form.reset();
+  setStatus("Thanks — we’ll be in touch shortly.", "success");
+  } catch (err) {
+  setStatus("Network error. Please try again.", "error");
+  } finally {
+  submitBtn.disabled = false;
+  }
   });
 })();
 </script>
